@@ -16,25 +16,52 @@ console.log("Voici les données récupérées via Fetch (image) : ", dataFetch[0
 console.log("Voici les données récupérées via Fetch (nom type) : ", dataFetch[0].apiTypes[0].name); // noms type pokemon
 console.log("Voici les données récupérées via Fetch (image type) : ", dataFetch[0].apiTypes[0].image); // image type pokemon
 
+let boiteImagePokemon = document.createElement("div");
+document.querySelector("h1").appendChild(boiteImagePokemon);
 
-
-
-
-let selectNamePoke = document.createElement("select");
+let menuSelectNamePoke = document.createElement("select");
 let selectTitreChoisirPoke = document.createElement("option")
 selectTitreChoisirPoke.innerText = "Choisir votre Pokemon";
-document.querySelector(".select-pokemon").appendChild(selectNamePoke)
+document.querySelector("div:nth-child(2)").appendChild(menuSelectNamePoke)
+menuSelectNamePoke.appendChild(selectTitreChoisirPoke)
 dataFetch.forEach(pokemon => {
     let namePoke = document.createElement("option");
     namePoke.innerText = pokemon.name;
     console.log("Nom pokemon : ",pokemon.name);
-    namePoke.addEventListener("click",function () {
-        pokemon.apiEvolutions.forEach(type => {
-            console.log("Nom évolutions : ", type.name);
-        });
-        // document.querySelector(".type-pokemon") 
-    })
-    selectNamePoke.appendChild(namePoke)
+    menuSelectNamePoke.appendChild(namePoke)
 });
+// menuSelectNamePoke.addEventListener("change", function () {
+//     let pokemonDemande = dataFetch.find((dataFetchPokemon) => dataFetchPokemon.name == menuSelectNamePoke.value);
+//     boiteImagePokemon.innerHTML = "";
+//     let imagePokemon = document.createElement("img");
+//     imagePokemon.src = pokemonDemande.image;
+//     console.log(imagePokemon);
+//     boiteImagePokemon.appendChild(imagePokemon);
+// })
 
+// console.log(" (nom type) : ", dataFetch[].apiTypes[0].name); // noms type pokemon
+
+
+menuSelectNamePoke.addEventListener("change", function () {
+    // J'affiche mes pokemon sur mon site
+    let imagePokemon = document.createElement("img");
+    imagePokemon.src = dataFetch[menuSelectNamePoke.selectedIndex-1].image;
+    boiteImagePokemon.innerHTML = "";
+    // J'affiche le nom de mes pokemon
+    let nomPokemon = document.createElement("li")
+    nomPokemon.innerText = dataFetch[menuSelectNamePoke.selectedIndex-1].name;
+    document.querySelector(".donnees-pokemon").innerHTML = "";
+    // J'affiche le type de mon pokemon
+    let typePokemon = document.createElement("li")
+    dataFetch[menuSelectNamePoke.selectedIndex-1].apiTypes.forEach(type => {
+        typePokemon.textContent = type.name;    
+        console.log("Mon type est : ", dataFetch[menuSelectNamePoke.selectedIndex-1].apiTypes[0].name);
+    })
+    // typePokemon.innerText = dataFetch[menuSelectNamePoke.selectedIndex-1].apiTypes[0].name
+
+
+    document.querySelector(".donnees-pokemon").appendChild(typePokemon)
+    document.querySelector(".donnees-pokemon").appendChild(nomPokemon)
+    boiteImagePokemon.appendChild(imagePokemon);
+});
 

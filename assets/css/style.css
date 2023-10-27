@@ -4,8 +4,34 @@
     padding: 0;
     border: 1px solid red;
 }
- img {
-    width: 500px;
-    height: 500px;
- }
 
+header {
+    display: flex;
+    background-color: black;
+}
+
+/* header img:first-child {
+    display: flex;
+    justify-content: flex-start;
+}
+
+header img:last-child {
+    display: flex;
+    justify-content: flex-end;
+} */
+
+body {
+    background-image: url(../image/pokemon-background-pokeball.jpg) ;
+    
+}
+
+.container-main {
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    /* border-radius: 50%; */
+}
+
+div ul {
+    list-style-type: none;
+}

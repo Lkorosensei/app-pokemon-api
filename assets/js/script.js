@@ -46,22 +46,34 @@ menuSelectNamePoke.addEventListener("change", function () {
     // J'affiche mes pokemon sur mon site
     let imagePokemon = document.createElement("img");
     imagePokemon.src = dataFetch[menuSelectNamePoke.selectedIndex-1].image;
-    boiteImagePokemon.innerHTML = "";
+    boiteImagePokemon.innerHTML = ""; 
+    boiteImagePokemon.appendChild(imagePokemon);
     // J'affiche le nom de mes pokemon
     let nomPokemon = document.createElement("li")
-    nomPokemon.innerText = dataFetch[menuSelectNamePoke.selectedIndex-1].name;
+    nomPokemon.innerText = "Nom : " + dataFetch[menuSelectNamePoke.selectedIndex-1].name;
     document.querySelector(".donnees-pokemon").innerHTML = "";
+    document.querySelector(".donnees-pokemon").appendChild(nomPokemon)
     // J'affiche le type de mon pokemon
     let typePokemon = document.createElement("li")
+    let tableauType = [];
     dataFetch[menuSelectNamePoke.selectedIndex-1].apiTypes.forEach(type => {
-        typePokemon.textContent = type.name;    
-        console.log("Mon type est : ", dataFetch[menuSelectNamePoke.selectedIndex-1].apiTypes[0].name);
+        tableauType.push(type.name);    
+        console.log("Mon type est : ", type.name);
+        typePokemon.innerText = "Types : " + tableauType.join(" et ");
+        document.querySelector(".donnees-pokemon").appendChild(typePokemon)
+    // J'affiche les évolutions de mon Pokémon
+    let evolutionPokemon = document.createElement("li");
+    dataFetch[menuSelectNamePoke.selectedIndex-1].apiEvolutions.forEach(evolution => {
+        evolutionPokemon.innerText = "Evolution : " + evolution.name;
+        document.querySelector("li:last-child").appendChild(evolutionPokemon)
+    });
+    
     })
-    // typePokemon.innerText = dataFetch[menuSelectNamePoke.selectedIndex-1].apiTypes[0].name
+    
 
-
-    document.querySelector(".donnees-pokemon").appendChild(typePokemon)
-    document.querySelector(".donnees-pokemon").appendChild(nomPokemon)
-    boiteImagePokemon.appendChild(imagePokemon);
+    
+    
+   
 });
+
 

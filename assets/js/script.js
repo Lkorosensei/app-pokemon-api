@@ -16,8 +16,8 @@ console.log("Voici les données récupérées via Fetch (image) : ", dataFetch[0
 console.log("Voici les données récupérées via Fetch (nom type) : ", dataFetch[0].apiTypes[0].name); // noms type pokemon
 console.log("Voici les données récupérées via Fetch (image type) : ", dataFetch[0].apiTypes[0].image); // image type pokemon
 
-let boiteImagePokemon = document.createElement("div");
-document.querySelector("h1").appendChild(boiteImagePokemon);
+// let boiteImagePokemon = document.createElement("div");
+// document.querySelector("h1").appendChild(boiteImagePokemon);
 
 let menuSelectNamePoke = document.createElement("select");
 let selectTitreChoisirPoke = document.createElement("option")
@@ -46,8 +46,9 @@ menuSelectNamePoke.addEventListener("change", function () {
     // J'affiche mes pokemon sur mon site
     let imagePokemon = document.createElement("img");
     imagePokemon.src = dataFetch[menuSelectNamePoke.selectedIndex-1].image;
-    boiteImagePokemon.innerHTML = ""; 
-    boiteImagePokemon.appendChild(imagePokemon);
+    document.querySelector("h1").innerHTML = ""; 
+    document.querySelector("h1").innerText = "Ce pokemon est : "; 
+    document.querySelector("h1").appendChild(imagePokemon);
     // J'affiche le nom de mes pokemon
     let nomPokemon = document.createElement("li")
     nomPokemon.innerText = "Nom : " + dataFetch[menuSelectNamePoke.selectedIndex-1].name;

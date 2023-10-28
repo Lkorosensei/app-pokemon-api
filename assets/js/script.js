@@ -1,7 +1,7 @@
 console.log("YOUHOOOOOO!");
 
 let dataFetch;
-const urlApiPoke = "https://pokebuildapi.fr/api/v1/pokemon/limit/5";
+const urlApiPoke = "https://pokebuildapi.fr/api/v1/pokemon/limit/100";
 await getDataFetch();
 async function getDataFetch() {
     const res = await fetch(urlApiPoke);
